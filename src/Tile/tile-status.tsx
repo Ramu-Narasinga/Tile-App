@@ -1,3 +1,4 @@
+import * as React from 'react';
 import styled from "styled-components";
 
 import { ReactComponent as SolvedIcon } from '../assets/solved-icon.svg';

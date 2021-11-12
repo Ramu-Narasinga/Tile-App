@@ -5,6 +5,8 @@ import { ReactComponent as StackoverflowIcon } from  '../assets/stackoverflow.sv
 import { ReactComponent as DiscourseIcon } from  '../assets/discourse.svg';
 import { ReactComponent as ViewsIcon } from  '../assets/views-icon.svg';
 import { ReactComponent as LikesIcon } from  '../assets/likes-icon.svg';
+import { ReactComponent as ViewsActiveIcon } from  '../assets/views-active-icon.svg';
+import { ReactComponent as LikesActiveIcon } from  '../assets/likes-active-icon.svg';
 
 type TileCardHeaderprops = {
       likes: number,
@@ -51,19 +53,25 @@ const TileCardLikes = styled.div`
 
 const TileCardViewLikeWrapper = styled.div`
       display: flex;
+      cursor: pointer;
 
 `
 
 const getHeaderIcon = (type: string) => {
+      console.log("type:", type);
       switch(type) {
+            case 'discourse':
+                  return <DiscourseIcon />;
             case 'views':
                   return <ViewsIcon />;
+            case 'activeViews':
+                  return <ViewsActiveIcon />;
             case 'likes':
                   return <LikesIcon />;
+            case 'activeLikes':
+                  return <LikesActiveIcon />
             case 'stackoverflow':
                   return <StackoverflowIcon />;
-            case 'likes':
-                  return <DiscourseIcon />;
             default:
                   return <StackoverflowIcon />;
       }
@@ -79,15 +87,24 @@ export const TileCardHeader = (props: TileCardHeaderprops): JSX.Element => {
             headerIcon
       } = props;
 
+      const [viewHovered, setViewHovered] = React.useState(false);
+      const [likeHovered, setLikeHovered] = React.useState(false);
+
       return <StyledTileCardHeaderContainer>
                   {getHeaderIcon(headerIcon)}
                   <StylesTileCardHeaderViewsLikesContainer>
-                        <TileCardViewLikeWrapper>
-                              {getHeaderIcon('views')}
+                        <TileCardViewLikeWrapper 
+                              onMouseEnter={() => {console.log("mpuse hobvered");setViewHovered(true)}} 
+                              onMouseLeave={() => setViewHovered(false)}
+                        >
+                              {viewHovered ? getHeaderIcon('activeViews') : getHeaderIcon('views')}
                               <TileCardViews>{views}</TileCardViews>
                         </TileCardViewLikeWrapper>
-                        <TileCardViewLikeWrapper>
-                              {getHeaderIcon('likes')}
+                        <TileCardViewLikeWrapper
+                              onMouseEnter={() => setLikeHovered(true)} 
+                              onMouseLeave={() => setLikeHovered(false)}
+                        >
+                              {likeHovered ? getHeaderIcon('activeLikes') : getHeaderIcon('likes')}
                               <TileCardLikes>{likes}</TileCardLikes>
                         </TileCardViewLikeWrapper>
                   </StylesTileCardHeaderViewsLikesContainer>

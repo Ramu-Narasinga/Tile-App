@@ -18,14 +18,43 @@ const StyledTile = styled.div`
       flex-direction: column;
       align-items: flex-start;
       padding: 12px;
+      margin-bottom: 48px;
 `
 
 function Tile() {
+
+      const tiles = [{
+            status: "solved",
+            views: 66,
+            likes: 20,
+            headerIcon: "/assets/stackoverflow.svg",
+            content: "Issue with using localhost:8080 and adding multiple authorized redirect_url",
+            tags: ["tag", "tag-1", "tag-2", "tag-3"]
+      }, {
+            status: "pending",
+            views: 66,
+            likes: 20,
+            headerIcon: "/assets/discourse.svg",
+            content: "Issue with using localhost:8080 and adding multiple authorized redirect_url",
+            tags: ["tag", "tag-1", "tag-2", "tag-3"]
+      }, {
+            status: "solved",
+            views: 66,
+            likes: 20,
+            headerIcon: "/assets/stackoverflow.svg",
+            content: "Issue with using localhost:8080 and adding multiple authorized redirect_url",
+            tags: ["tag", "tag-1", "tag-2", "tag-3"]
+      }]
+
   return (
-      <StyledTile>
-            <TileStatus></TileStatus>
-            <TileCard></TileCard>
-      </StyledTile>
+      <>
+            {
+                  tiles.map(tile => <StyledTile>
+                        <TileStatus status={tile.status}></TileStatus>
+                        <TileCard></TileCard>
+                  </StyledTile>)
+            }
+      </>
   );
 }
 

@@ -7,6 +7,7 @@ import { TileCardTags } from "./tile-card-tags";
 const StyledTileCardContainer = styled.div`
       background: #ffffff;
       padding: 12px;
+      width: 100%;
 `;
 
 const TileCardContent = styled.div`
@@ -21,7 +22,6 @@ const TileCardContent = styled.div`
 `
 
 export const TileCard = () => {
-      // Use it like any other component.
       return <StyledTileCardContainer>
             <TileCardHeader></TileCardHeader>
             <TileCardContent>Issue with using localhost:8080 and adding multiple authorized redirect_url</TileCardContent>

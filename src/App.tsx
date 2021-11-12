@@ -6,6 +6,14 @@ import './App.scss';
 import { TileStatus } from './Tile/tile-status';
 import { TileCard } from './Tile/tile-card';
 
+type TileProps = {
+      status: string,
+      views: number,
+      likes: number,
+      headerIcon: string,
+      content: string,
+      tags: string[]
+}
 
 const StyledTile = styled.div`
       width: 302px;
@@ -23,25 +31,25 @@ const StyledTile = styled.div`
 
 function Tile() {
 
-      const tiles = [{
+      const tiles: TileProps[] = [{
             status: "solved",
             views: 66,
             likes: 20,
-            headerIcon: "/assets/stackoverflow.svg",
+            headerIcon: "stackoverflow",
             content: "Issue with using localhost:8080 and adding multiple authorized redirect_url",
             tags: ["tag", "tag-1", "tag-2", "tag-3"]
       }, {
             status: "pending",
             views: 66,
             likes: 20,
-            headerIcon: "/assets/discourse.svg",
+            headerIcon: "discourse",
             content: "Issue with using localhost:8080 and adding multiple authorized redirect_url",
-            tags: ["tag", "tag-1", "tag-2", "tag-3"]
+            tags: ["tag", "tag-1"]
       }, {
             status: "solved",
             views: 66,
             likes: 20,
-            headerIcon: "/assets/stackoverflow.svg",
+            headerIcon: "stackoverflow",
             content: "Issue with using localhost:8080 and adding multiple authorized redirect_url",
             tags: ["tag", "tag-1", "tag-2", "tag-3"]
       }]
@@ -51,7 +59,7 @@ function Tile() {
             {
                   tiles.map(tile => <StyledTile>
                         <TileStatus status={tile.status}></TileStatus>
-                        <TileCard></TileCard>
+                        <TileCard tile={tile}></TileCard>
                   </StyledTile>)
             }
       </>

@@ -1,6 +1,10 @@
 import * as React from 'react';
 import styled from "styled-components";
 
+type TileCardTagsProps = {
+      tags: string[];
+}
+
 const StyledTileCardTags = styled.div`
       display: flex;
       flex-wrap: wrap;
@@ -18,11 +22,10 @@ const TileCardTag = styled.div`
       color: #545DEA;
 `
 
-export const TileCardTags = () => {
+export const TileCardTags = (props: TileCardTagsProps): JSX.Element  => {
       return <StyledTileCardTags>
-            <TileCardTag>#tag</TileCardTag>
-            <TileCardTag>#tag-1</TileCardTag>
-            <TileCardTag>#tag-2</TileCardTag>
-            <TileCardTag>#tag-3</TileCardTag>
+            {
+                  props.tags.map(tag => <TileCardTag>#{tag}</TileCardTag>)
+            }
       </StyledTileCardTags>
 }

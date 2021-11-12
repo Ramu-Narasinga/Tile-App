@@ -66,12 +66,14 @@ function renderStatus(status: string) {
       switch(status) {
         case 'solved':
           return SolvedStatusComponent;
+        case 'pending':
+            return PendingStatusComponent;
         default:
           return PendingStatusComponent;
       }
 }
 
-export const TileStatus = ({ status }: TileStatusProps) => {
+export const TileStatus = ({ status }: TileStatusProps): JSX.Element => {
       // Use it like any other component.
       return renderStatus(status)
 }

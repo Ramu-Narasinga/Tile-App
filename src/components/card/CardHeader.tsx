@@ -32,6 +32,7 @@ const getIcon = (icon: CardHeaderIconValues) => {
         return <DiscourseIcon />
     }
 
+    //Default
     return <DiscourseIcon />
 }
 
